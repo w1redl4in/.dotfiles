@@ -1,9 +1,9 @@
 # Requisitos para usar essa config
 
-## 1 - i3wm
-## 2 - Pywal
-## 3 - Polybar
-## 4 - urxvt
+## i3wm - Pywal - Polybar - urxvt
+
+![alt text](https://github.com/w1redl4in/i3wm/blob/master/Prints/2019-02-14--07:58:30:PM--1600900--scrot.png)
+
 
 
 
