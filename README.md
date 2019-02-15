@@ -1,4 +1,4 @@
-#                             • Requisitos para usar essa config •
+#                            • • Requisitos para usar essa config • •
 ### i3wm: https://i3wm.org
 ### Pywal: https://github.com/dylanaraps/pywal
 ### urxvt-unicode: https://wiki.archlinux.org/index.php/rxvt-unicode
