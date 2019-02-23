@@ -1,5 +1,5 @@
-# Requisitos para usar essa config 
-  ## i3wm: 
+# Dependencies
+    ## i3wm: 
     https://i3wm.org
   ## Pywal:
     https://github.com/dylanaraps/pywal
