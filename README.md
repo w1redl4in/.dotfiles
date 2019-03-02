@@ -15,8 +15,8 @@
         https://github.com/jaagr/polybar
 
 ## Screenshots
-![](https://github.com/w1redl4in/.dotfiles/blob/master/Prints/2019-02-27--07:12:36:PM--1600900--scrot.png)
-![](https://github.com/w1redl4in/.dotfiles/blob/master/Prints/2019-02-23--01:03:50:PM--1600900--scrot.png)
+![](https://github.com/w1redl4in/.dotfiles/blob/master/Prints/2019-03-02--12:45:27:PM--1600900--scrot.png)
+![](https://github.com/w1redl4in/.dotfiles/blob/master/Prints/2019-03-02--12:49:47:PM--1600900--scrot.png)
 
 
 
