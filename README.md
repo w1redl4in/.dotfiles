@@ -16,7 +16,7 @@
 
 ## Screenshots
 ![](https://github.com/w1redl4in/.dotfiles/blob/master/Prints/2019-03-02--12:45:27:PM--1600900--scrot.png)
-![](https://github.com/w1redl4in/.dotfiles/blob/master/Prints/2019-03-02--12:49:47:PM--1600900--scrot.png)
+![](https://github.com/w1redl4in/.dotfiles/blob/master/Prints/main.png)
 
 
 
