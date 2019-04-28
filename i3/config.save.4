@@ -7,25 +7,25 @@
 ### Theme ###
 #############
 
-font xft:RobotoMono 8
+font xft:lime 8
 
-#set $FOCUS #55d193
-#set $UNFOCUS #2b3135
+set $FOCUS #55d193
+set $UNFOCUS #2b3135
 
- #Layout colors 	    bord     bg       text     indicator (split)
-#client.focused 	   $FOCUS   $FOCUS   $FOCUS   $FOCUS
-#client.focused_inactive     $UNFOCUS $UNFOCUS $UNFOCUS $UNFOCUS
-#client.unfocused 	    $UNFOCUS $UNFOCUS $UNFOCUS $UNFOCUS
-#client.urgent 		    $FOCUS   $FOCUS   $FOCUS   $FOCUS
-#client.background 	    $UNFOCUS
+ Layout colors 	    bord     bg       text     indicator (split)
+client.focused 		    $FOCUS   $FOCUS   $FOCUS   $FOCUS
+client.focused_inactive     $UNFOCUS $UNFOCUS $UNFOCUS $UNFOCUS
+client.unfocused 	    $UNFOCUS $UNFOCUS $UNFOCUS $UNFOCUS
+client.urgent 		    $FOCUS   $FOCUS   $FOCUS   $FOCUS
+client.background 	    $UNFOCUS
 
 ###############
 ### Borders ###
 ###############
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 3.5
 new_window pixel 1
 new_float pixel 1
- 
+
 focus_follows_mouse yes
 
 ############
@@ -33,13 +33,9 @@ focus_follows_mouse yes
 ############
 
 set $default_gaps_inner 20
-set $default_gaps_outer 80
+set $default_gaps_outer 60
 gaps inner $default_gaps_inner
 gaps outer $default_gaps_outer
-gaps bottom 31%
-gaps horizontal 10
-
-
 
 set $ws1 mail
 set $ws2 web
@@ -169,8 +165,7 @@ bindsym Mod1+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym Mod1+Shift+e exit
 #lock i3
-bindsym Mod1+BackSpace exec i3lock-fancy --text "sudo apt-get a life"
-#bindsym Mod1+BackSpace exec ~/.config/i3/lockscreen.sh
+bindsym Mod1+Shift+BackSpace exec i3lock
 
 #####################
 ### Resize Window ###
@@ -216,14 +211,12 @@ bindsym Mod4+Right exec --no-startup-id mpc next
 bindsym F6 exec xbacklight +10
 bindsym F5 exec xbacklight -10
 
-# Instant printscreen
-bindsym Print exec scrot $HOME/`date +%Y-%m-%d_%H:%M:%S`.png
-
-# Selecionar printscreen
-#bindsym Mod1+print exec scrot -s -e 'mv $f /tmp/ && gimp /tmp/$f'
+# Take a screenshot #
+bindsym Print exec --no-startup-id scrot '%F--%I:%M:%S:%p--$w$h--scrot.png' -e 'mv $f /home/svbtext/Pictures/scrot'
+#bindsym Mod1+Print exec --no-startup-id scrot --select
 
 ###################
-###   Polybar   ###
+### Polybar Top ###
 ###################
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
@@ -232,9 +225,8 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 ################
 exec_always wal -R
 exec_always nm-applet
-#exec_always discord
-exec_always compton
-exec_always mpd
+exec_always discord
+exec compton
 ###############
 ## i3 Colors ##
 ###############
@@ -251,8 +243,7 @@ client.urgent           $bg     $bg     $fg  $bg       $bg
 client.background       $bg
 
 # PROTIP: You can also dynamically set dmenu's colors this way:
-#bindsym Mod1+d exec --no-startup-id i3-dmenu-desktop 
-bindsym Mod1+d exec rofi -show drun
+bindsym Mod1+d exec --no-startup-id i3-dmenu-desktop 
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -268,7 +259,3 @@ bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-
-
-# xprop floating mode
-# for window [class="NetBeans IDE 8.0.2"] floating enable

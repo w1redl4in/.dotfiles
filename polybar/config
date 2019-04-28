@@ -1,3 +1,4 @@
+##Cores Pywal
 [colors]
 background = ${xrdb:background}
 background-alt = ${xrdb:color0}
@@ -7,29 +8,47 @@ primary = ${xrdb:color6}
 secondary = ${xrdb:color13}
 alert = ${xrdb:color9}
 
-[bar/bottom]
-width = 10%
+
+##Barra superior
+[bar/bottom2]
+radius = 6.0
+width = 40%
 height = 30
-offset-x = 45%
-offset-y = 828
+offset-x = 30%
+offset-y = 818
 fixed-center = true
 bottom = true
-tray-position = center
-modules-center = mpd
-wm-restack = i3
-override-redirect = true
 background = ${colors.background}
-foreground = ${colors.background}
+foreground = ${colors.foreground}
 line-size = 0
 line-color = #f00
-border-size = 0
-border-color = #00000000
+border-size = 1
+border-color = ${colors.foreground}
+padding-left = 1
+padding-right = 1
+module-margin-left = 0
+module-margin-right = 1
+font-0 = SourceCode-Regular:size=11;2
+font-1 = unifont:fontformat=truetype:size=13:antialias=true;0
+font-2 = "Material Icons:antialias=true:size=13;5"
+modules-left = date 
+tray-position = center
+modules-right = pulseaudio memory temperature battery
+#modules-right = pulseaudio memory temperature battery
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = ns-resize
 
 
+
+
+
+##Barra SUPERIOR
 [bar/top]
-width = 90%
+width = 58%
 height = 30
-offset-x = 4.8%
+offset-x = 20%
 offset-y = 9
 fixed-center = true
 bottom = false
@@ -37,28 +56,136 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 line-size = 0
 line-color = #f00
-border-size = 0
-border-color = #00000000
-
+border-size = 1
+border-color = ${colors.foreground}
 padding-left = 2
 padding-right = 2
-
 module-margin-left = 0
 module-margin-right = 2
-
-font-0 = NotoSans-Regular:size=11;2
+font-0 = SourceCode-Regular:size=11;2
 font-1 = unifont:fontformat=truetype:size=13:antialias=true;0
-font-2 = "Material Icons:antialias=true:size=15;5"
-
-modules-left = hostname tor ip mpd
-modules-center = i3
-modules-right = pulseaudio memory cpu temperature battery wlan eth date network wireless-network
-
+font-2 = "Material Icons:antialias=true:size=12;5"
+modules-left = uptime 
+modules-right = wlan wireless-network network netstat eth
+modules-center = hostname
+#modules-right = pulseaudio memory temperature battery
 wm-restack = i3
 override-redirect = true
-
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+##Barra grande de baixo
+[bar/top2]
+width = 90%
+height = 30
+offset-x = 4.8%
+offset-y = 8
+fixed-center = true
+bottom = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 0
+line-color = #f00
+border-size = 1
+border-color = ${colors.foreground}
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 2
+font-0 = SourceCode-Regular:size=11;2
+font-1 = unifont:fontformat=truetype:size=13:antialias=true;0
+font-2 = "Material Icons:antialias=true:size=13;6"
+modules-left = ip 
+modules-center = i3
+modules-right = mpd mpd-music 
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = ns-resize
+label-separator = |
+
+
+##Modules
+[module/powermenu]
+type = custom/menu
+expand-right = false
+format-spacing = 1
+label-open =  
+label-open-padding = 1
+label-open-foreground = ${colors.secondary}
+label-open-background = ${colors.background-alt}
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+label-close-background = ${colors.background-alt}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = Lock Me !
+menu-0-0-exec = menu-open-1
+menu-0-0-background = ${colors.background-alt}
+
+menu-1-0 = Lock
+menu-1-0-exec = i3lock -i ~/images/bgi3lock.png -e
+menu-1-0-background = ${colors.background-alt}
+
+[module/keyboard]
+type = internal/xkeyboard
+
+; List of indicators to ignore
+blacklist-0 = num lock
+#blacklist-1 = scroll lock
+label-layout-padding = 5
+label-layout-background = ${colors.background}
+label-layout-foreground = ${colors.foreground}
+format = <label-layout> <label-indicator>
+format-spacing = 0
+label-layout = %name%
+label-indicator = %name%
+label-indicator-padding = 2
+label-indicator-background = ${colors.background}
+
+; ------------------------------------------------
+; The following features are currently unreleased:
+
+
+; layout-icon-[0-9]+ = layout;icon
+; Assign each layout an icon that will be available as %icon% token for the
+; <label-layout> tag. The part before ';' will try to match %layout% value.
+layout-icon-default = 
+layout-icon-0 = ch;C
+layout-icon-1 = us;U
+
+; indicator-icon-[0-9]+ = indicator;off icon;on icon
+; Provides the content of the %icon% token in label-indicator-*
+indicator-icon-default =
+indicator-icon-0 = caps lock;-CL;+CL
+indicator-icon-1 = scroll lock;;+SL
+indicator-icon-2 = num lock;-NL;+NL
+
+
+
+[module/mpd-music]
+type = internal/mpd
+host = 127.0.0.1
+port = 6601
+format-online = <label-song>
+label-song = %{F#7a1B54}   %{F-} %{F#16a193}%artist:0:15% %{F-} %{F#B8eadb}*%{F-} %{F#934897} %title:0:20% %{F-}
+
+[module/netstat]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+label-connected = " %{F#ff0000} %{F-}%upspeed% %{F#00ff00} %{F-}%downspeed% "
+label-connected-background = ${colors.background-alt}
+
+[module/uptime]
+type = custom/script
+exec = uptime|awk '{print $2 " " $3 " " $4 " " $5 " " $6}'|cut -d ',' -f -2
+interval = 6
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+format-foreground = ${colors.foreground}
+format-padding = 1
 
 
 [module/xwindow]
@@ -123,24 +250,62 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 [module/ip]
 type = custom/script
 interval = 2
-format = "<label> "
-format-prefix = " "
-format-prefix-foreground = ${colors.primary}
-exec = echo "$(curl --limit-rate 1k -s https://ifcfg.me)" || echo ""
+format = "<label>"
+format-prefix = "LOCAL IP"
+format-prefix-underline = ${colors.background}
+format-prefix-foreground = ${colors.foreground}
+
+
+exec = echo "$(hostname -i | awk '{print $3}')"
+
+label-layout-foreground = ${colors.foreground}
+label-layout-background = ${colors.foreground}
+
+
+
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+; Available tags:
+;   <label> (default)
+;   <ramp>
+;   <bar>
+format = <label>
+
+; Available tokens:
+;   %percentage% (default)
+label = %percentage%%
+
+; Only applies if <ramp> is used
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+; Only applies if <bar> is used
+bar-width = 10
+bar-indicator = |
+bar-fill = ─
+bar-empty = ─
 
 [module/hostname]
 type = custom/script
 interval = 256
 format = "<label> "
-format-prefix = " "
+;format-prefix = " "
 format-prefix-foreground = ${colors.primary}
-exec = echo "$(uname -n)"
+format-prefix-background = ${colors.primary}
+exec = echo "Ask why it worked, ask why it didn't worked."
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.primary}
+format-prefix-foreground = ${colors.foreground}
 format-underline = #f90000
 label = %percentage%%
 
@@ -174,17 +339,19 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.secondary}
 
+
+
 [module/eth]
 type = internal/network
-interface = br0
+interface = enp0s25
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
+#format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
-format-disconnected =
+;format-disconnected =
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
@@ -243,8 +410,8 @@ format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
 ramp-0 = 
@@ -291,9 +458,14 @@ ramp-volume-0 = 🔈
 ramp-volume-1 = 🔉
 ramp-volume-2 = 🔊
 
+[module/day]
+type = internal/date
+interval = 5
+date = %a %d %b
+date-alt = %Y-%m-%d
+label = " %date% "
+label-background = ${colors.background-alt}
 
-[module/alsa]
-type = internal/alsa
 
 ; Soundcard to be used
 ; Usually in the format hw:# where # is the card number
